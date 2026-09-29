@@ -20,6 +20,7 @@ public partial class MainWindow : Window
     }
 
     private void UpdateThemeButton() => ThemeIcon.Kind = ThemeManager.IsDark
-        ? MaterialIconKind.WeatherSunny
-        : MaterialIconKind.WeatherNight;
+        ? MaterialIconKind.MoonWaningCrescent
+        : MaterialIconKind.WhiteBalanceSunny;
+
 }

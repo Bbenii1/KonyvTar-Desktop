@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="KönyvTár.Views.Auth.RegisterPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel MaxWidth="300" HorizontalAlignment="Center" Margin="0,28" Spacing="0">
+            <TextBlock Text="Regisztráció" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource TextPrimary}" Margin="0 50 0 20"/>
+            <TextBlock Text="Keresztnév" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <TextBox x:Name="FirstNameTextBox" Classes="inputArea"/>
+            <TextBlock Text="Vezetéknév" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <TextBox x:Name="LastNameTextBox" Classes="inputArea"/>
+            <TextBlock Text="Munkahelyi könyvtár" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <ComboBox x:Name="LibraryComboBox" SelectedIndex="0" Margin="0,8,0,14" Height="48" FontSize="15">
+                <ComboBoxItem Content="Könyvtárak később lesznek elérhetők" IsEnabled="False"/>
+            </ComboBox>
+            <TextBlock Text="E-mail cím" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <TextBox x:Name="EmailTextBox" Classes="inputArea"/>
+            <TextBlock Text="Jelszó" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <TextBox x:Name="PasswordTextBox" PasswordChar="•" Classes="inputArea"/>
+            <TextBlock Text="Jelszó megerősítése" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+            <TextBox x:Name="ConfirmPasswordTextBox" PasswordChar="•" Classes="inputArea"/>
+            <Button x:Name="RegisterButton" Content="Regisztráció" Classes="primaryButton" />
+            <TextBlock x:Name="StatusText" Foreground="#C94C4C" FontSize="13" TextWrapping="Wrap" Margin="0 10 0 0" HorizontalAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 10 0 0" Spacing="5">
+                <TextBlock Text="Van már fiókod?" Foreground="#68738A" VerticalAlignment="Center"/>
+                <Button x:Name="BackButton" Content="Bejelentkezés" Classes="linkButton"/>
+            </StackPanel>
+            <TextBlock Text="© 2026 KönyvTár" HorizontalAlignment="Center" Foreground="#9AA3B5" FontSize="12" Margin="0 10 0 0"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -25,4 +25,10 @@
         <PackageReference Include="FluentIcons.Avalonia" Version="2.1.343" />
         <PackageReference Include="Material.Icons.Avalonia" Version="3.0.2" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Auth\CodeLoginPage.axaml.cs">
+        <DependentUpon>CodeLoginPage.axaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>
