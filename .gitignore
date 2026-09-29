@@ -1,0 +1,15 @@
+# Build output
+KönyvTár/bin/
+KönyvTár/obj/
+
+# IDE and user-specific files
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Operating system files
+.DS_Store
+Thumbs.db

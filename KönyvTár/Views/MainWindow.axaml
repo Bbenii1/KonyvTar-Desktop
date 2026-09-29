@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KönyvTár.ViewModels"
+        xmlns:ic="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="KönyvTár.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KönyvTár">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Button x:Name="ThemeButton" ToolTip.Tip="Váltás sötét/világos mód között"
+                Background="Transparent" Foreground="{DynamicResource TextPrimary}"
+                FontSize="22" Width="44" Height="44" HorizontalAlignment="Right"
+                Margin="0,16,20,0" Padding="0">
+            <ic:MaterialIcon x:Name="ThemeIcon" Kind="WhiteBalanceSunny" Width="22" Height="22"/>
+        </Button>
+        <TextBlock Text="{Binding Greeting}" Foreground="{DynamicResource TextPrimary}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+
+</Window>
