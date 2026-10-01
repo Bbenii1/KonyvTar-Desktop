@@ -5,32 +5,62 @@ namespace KönyvTár.Views.Auth;
 
 public partial class LoginPage : UserControl
 {
+    private PasswordLoginPanel _passwordPage = null!;
+    private CodeLoginPanel _codePage = null!;
+    
     public event System.Action? LoginRequested;
     public event System.Action? RegisterRequested;
     public event System.Action? CodeLoginRequested;
     public event System.Action? ForgotPasswordRequested;
 
-    public string? Email => EmailTextBox.Text;
-
     public LoginPage()
     {
         InitializeComponent();
-        LoginButton.Click += OnLoginClick;
+
+        _passwordPage = new PasswordLoginPanel();
+        _codePage = new CodeLoginPanel();
+
+        LoginMethodToggle.IsCheckedChanged += ChangeLoginPage;
+        _passwordPage.LoginRequested += () => LoginRequested?.Invoke();
+        _passwordPage.CodeLoginRequested += () => LoginMethodToggle.IsChecked = true;
+        _passwordPage.ForgotPasswordRequested += () => ForgotPasswordRequested?.Invoke();
         RegisterButton.Click += (_, _) => RegisterRequested?.Invoke();
-        CodeLoginButton.Click += (_, _) => CodeLoginRequested?.Invoke();
-        ForgotPasswordButton.Click += (_, _) => ForgotPasswordRequested?.Invoke();
+
+        ShowPasswordLoginPage();
+    }
+    
+    private void ShowPasswordLoginPage()
+    {
+        _passwordPage.ShowStatus(string.Empty);
+        _passwordPage.EmailTextBox.Text = string.Empty;
+        _passwordPage.PasswordTextBox.Text = string.Empty;
+        ShowPage(_passwordPage, "KönyvTár — Belépés jelszóval");
+    }
+    private void ShowCodeLoginPage()
+    {
+        _codePage.EmailTextBox.Text = string.Empty;
+        _codePage.CodeTextBox.Text = string.Empty;
+        ShowPage(_codePage, "KönyvTár — Belépés kóddal");
     }
 
-    public void ShowStatus(string message) => StatusText.Text = message;
+    public void ShowStatus(string message) => _passwordPage.ShowStatus(message);
 
-    private void OnLoginClick(object? sender, RoutedEventArgs e)
+    private void ChangeLoginPage(object? sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(EmailTextBox.Text) || string.IsNullOrWhiteSpace(PasswordTextBox.Text))
+        if (LoginMethodToggle.IsChecked == true)
         {
-            ShowStatus("Add meg e-mail címed és jelszavad.");
-            return;
+            ShowCodeLoginPage();
         }
-
-        LoginRequested?.Invoke();
+        else
+        {
+            ShowPasswordLoginPage();
+        }
+    }
+    
+    
+    
+    private void ShowPage(Control page, string title)
+    {
+        LoginHost.Content = page;
     }
 }

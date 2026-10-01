@@ -27,8 +27,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\Auth\CodeLoginPage.axaml.cs">
+      <Compile Update="Views\Auth\CodeLoginPanel.axaml.cs">
         <DependentUpon>CodeLoginPage.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Auth\PasswordLoginPanel.axaml.cs">
+        <DependentUpon>PasswordLoginPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
 </Project>

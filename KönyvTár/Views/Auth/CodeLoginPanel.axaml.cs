@@ -4,14 +4,11 @@ using System.Linq;
 
 namespace KönyvTár.Views.Auth;
 
-public partial class CodeLoginPage : UserControl
+public partial class CodeLoginPanel : UserControl
 {
-    public event System.Action? BackRequested;
-
-    public CodeLoginPage()
+    public CodeLoginPanel()
     {
         InitializeComponent();
-        BackButton.Click += (_, _) => BackRequested?.Invoke();
         RequestCodeButton.Click += OnRequestCodeClick;
         ChangeEmailButton.Click += OnChangeEmailClick;
         ResendCodeButton.Click += (_, _) => StatusText.Text = "Kódküldés jelenleg csak bemutató; e-mail nem ment ki.";
@@ -46,12 +43,7 @@ public partial class CodeLoginPage : UserControl
 
     private void OnChangeEmailClick(object? sender, RoutedEventArgs e)
     {
-        CodeSentPanel.IsVisible = false;
-        CodeEntryPanel.IsVisible = false;
-        EmailEntryPanel.IsVisible = true;
-        CodeTextBox.Text = string.Empty;
-        StatusText.Text = string.Empty;
-        EmailTextBox.Focus();
+        SetEmail(EmailTextBox.Text);
     }
 
     private void OnSubmitCodeClick(object? sender, RoutedEventArgs e)

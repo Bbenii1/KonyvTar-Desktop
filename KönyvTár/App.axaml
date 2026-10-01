@@ -196,6 +196,58 @@
             <Setter Property="Padding" Value="14, 0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+
+        <Style Selector="ToggleButton.accountTypeToggle">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource InputBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="24"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"/>
+                        <Border x:Name="UserIndicator"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                Width="144"
+                                Background="{DynamicResource ButtonHoverBackground}"
+                                CornerRadius="20"/>
+                        <Border x:Name="LibrarianIndicator"
+                                Margin="4"
+                                HorizontalAlignment="Right"
+                                Width="144"
+                                Background="{DynamicResource ButtonHoverBackground}"
+                                CornerRadius="20"
+                                IsVisible="False"/>
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <Style Selector="ToggleButton.accountTypeToggle:checked /template/ Border#UserIndicator">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="ToggleButton.accountTypeToggle:checked /template/ Border#LibrarianIndicator">
+            <Setter Property="IsVisible" Value="True"/>
+        </Style>
+        
+        
+        
     </Application.Styles>
              
 </Application>

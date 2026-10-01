@@ -12,6 +12,12 @@ public partial class RegisterPage : UserControl
         InitializeComponent();
         BackButton.Click += (_, _) => BackRequested?.Invoke();
         RegisterButton.Click += OnRegisterClick;
+        AccountTypeToggle.IsCheckedChanged += OnAccountTypeChanged;
+    }
+
+    private void OnAccountTypeChanged(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        LibrarySection.IsVisible = AccountTypeToggle.IsChecked == true;
     }
 
     private void OnRegisterClick(object? sender, RoutedEventArgs e)

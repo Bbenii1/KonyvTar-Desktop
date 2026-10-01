@@ -4,14 +4,27 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel MaxWidth="300" HorizontalAlignment="Center" Margin="0,28" Spacing="0">
             <TextBlock Text="Regisztráció" FontSize="32" FontWeight="Bold" Foreground="{DynamicResource TextPrimary}" Margin="0 50 0 20"/>
+            <ToggleButton x:Name="AccountTypeToggle"
+                          IsChecked="False"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,24"
+                          Classes="accountTypeToggle">
+                <Grid ColumnDefinitions="*,*">
+                    <TextBlock Grid.Column="0" Text="Felhasználó" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="Könyvtáros" HorizontalAlignment="Center"/>
+                </Grid>
+            </ToggleButton>
+
             <TextBlock Text="Keresztnév" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
             <TextBox x:Name="FirstNameTextBox" Classes="inputArea"/>
             <TextBlock Text="Vezetéknév" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
             <TextBox x:Name="LastNameTextBox" Classes="inputArea"/>
-            <TextBlock Text="Munkahelyi könyvtár" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
-            <ComboBox x:Name="LibraryComboBox" SelectedIndex="0" Margin="0,8,0,14" Height="48" FontSize="15">
-                <ComboBoxItem Content="Könyvtárak később lesznek elérhetők" IsEnabled="False"/>
-            </ComboBox>
+            <StackPanel x:Name="LibrarySection" IsVisible="False" Spacing="0">
+                <TextBlock Text="Munkahelyi könyvtár" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
+                <ComboBox x:Name="LibraryComboBox" SelectedIndex="0" Margin="0,8,0,14" Height="48" FontSize="15">
+                    <ComboBoxItem Content="Könyvtárak később lesznek elérhetők" IsEnabled="False"/>
+                </ComboBox>
+            </StackPanel>
             <TextBlock Text="E-mail cím" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
             <TextBox x:Name="EmailTextBox" Classes="inputArea"/>
             <TextBlock Text="Jelszó" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimary}"/>
