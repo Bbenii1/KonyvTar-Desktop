@@ -6,17 +6,11 @@
         Width="800"
         Height="600"
         MinWidth="720"
-        MinHeight="500"
+        MinHeight="300"
         CanResize="False"
         WindowStartupLocation="CenterScreen" 
         Background="{DynamicResource WindowBackground}">
-    <Grid>
-        <ContentControl x:Name="PageHost"/>
-        <Button x:Name="ThemeButton" Classes="ModeSwitcher" ToolTip.Tip="Váltás sötét/világos mód között"
-                Background="Transparent" Foreground="{DynamicResource TextPrimary}"
-                Width="44" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="0" Padding="0" ZIndex="10">
-            <ic:MaterialIcon x:Name="ThemeIcon" Kind="MoonWaningCrescent" Width="22" Height="22"/>
-        </Button>
-    </Grid>
+    
+        <ContentControl x:Name="PageHost" />
+        
 </Window>

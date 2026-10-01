@@ -1,8 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Interactivity;
-using Avalonia.Threading;
 using Material.Icons;
 using KönyvTár.ViewModels;
 using KönyvTár.Views.Auth;
@@ -23,7 +21,6 @@ public partial class LoginWindow : Window
     public LoginWindow()
     {
         InitializeComponent();
-        PositionChanged += OnPositionChanged;
 
         _loginPage = new LoginPage();
         _registerPage = new RegisterPage();
@@ -45,8 +42,8 @@ public partial class LoginWindow : Window
         _resetPasswordPage.BackRequested += () => ShowPage(_forgotCodePage, "KönyvTár — E-mail ellenőrzése");
         _resetPasswordPage.Finished += OnPasswordResetFinished;
 
-        ThemeButton.Click += OnThemeButtonClick;
-        UpdateThemeButton();
+        //ThemeButton.Click += OnThemeButtonClick;
+        //UpdateThemeButton();
         ShowLoginPage();
     }
 
@@ -66,51 +63,6 @@ public partial class LoginWindow : Window
     {
         PageHost.Content = page;
         Title = title;
-        
-        SizeToContent = SizeToContent.Height;
-        var screen = Screens.ScreenFromWindow(this);
-        Height = screen is null
-            ? 850
-            : Math.Max(MinHeight, screen.WorkingArea.Height / RenderScaling - 32);
-
-        Dispatcher.UIThread.Post(CenterOnScreen, DispatcherPriority.Loaded);
-    }
-
-    private bool _isCentering;
-
-    private void OnPositionChanged(object? sender, PixelPointEventArgs e)
-    {
-        if (!_isCentering)
-            CenterOnScreen();
-    }
-
-    private void CenterOnScreen()
-    {
-        var screen = Screens.ScreenFromWindow(this) ?? Screens.Primary;
-        if (screen is null)
-            return;
-
-        // Size in DIPs (including title bar/borders when available)
-        var size = FrameSize ?? ClientSize;
-        if (size.Width <= 0 || size.Height <= 0)
-            return; // not measured yet, try again later
-
-        // Convert DIPs -> physical pixels using the TARGET screen's scaling
-        var scale = screen.Scaling;
-        var pixelWidth = (int)Math.Round(size.Width * scale);
-        var pixelHeight = (int)Math.Round(size.Height * scale);
-
-        var area = screen.WorkingArea; // already in physical pixels
-        var centeredPosition = new PixelPoint(
-            area.X + (area.Width - pixelWidth) / 2,
-            area.Y + (area.Height - pixelHeight) / 2);
-
-        if (Position == centeredPosition)
-            return;
-
-        _isCentering = true;
-        Position = centeredPosition;
-        _isCentering = false;
     }
 
     private void OnPasswordResetFinished()
@@ -119,15 +71,15 @@ public partial class LoginWindow : Window
         _loginPage.ShowStatus("A jelszó-visszaállítás jelenleg csak bemutató.");
     }
 
-    private void OnThemeButtonClick(object? sender, RoutedEventArgs e)
-    {
-        ThemeManager.Toggle();
-        UpdateThemeButton();
-    }
+    //private void OnThemeButtonClick(object? sender, RoutedEventArgs e)
+    //{
+    //    ThemeManager.Toggle();
+    //    UpdateThemeButton();
+    //}
 
-    private void UpdateThemeButton() => ThemeIcon.Kind = ThemeManager.IsDark
-        ? MaterialIconKind.MoonWaningCrescent
-        : MaterialIconKind.WhiteBalanceSunny;
+    //private void UpdateThemeButton() => ThemeIcon.Kind = ThemeManager.IsDark
+    //    ? MaterialIconKind.MoonWaningCrescent
+    //    : MaterialIconKind.WhiteBalanceSunny;
     
     private void OpenMainWindow()
     {
